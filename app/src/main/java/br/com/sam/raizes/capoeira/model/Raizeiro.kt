@@ -9,5 +9,5 @@ data class Raizeiro(
     val id: Long = 0,
     val nickname: String = "",
     val name: String = "",
-    val graduation: Graduation
+    val graduation: String = "Iniciante"
 )

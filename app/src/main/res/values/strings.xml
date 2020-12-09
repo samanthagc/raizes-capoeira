@@ -1,4 +1,32 @@
 <resources>
     <string name="app_name">Raízes Capoeira</string>
+    <string name="raizeiro">raizeiro</string>
+    <string name="nickname">apelido</string>
+    <string name="name">nome</string>
+    <string name="graduation">graduação</string>
 
+    <string-array name="graduations">
+        <item>Iniciante</item>
+        <item>Ponta Amarela</item>
+        <item>Ponta Amarela e Laranja</item>
+        <item>Ponta Laranja</item>
+        <item>Ponta Laranja e Azul</item>
+        <item>Ponta Azul</item>
+        <item>Crua e Amarela</item>
+        <item>Amarela</item>
+        <item>Amarela e Laranja</item>
+        <item>Laranja</item>
+        <item>Laranja e Azul</item>
+        <item>Azul</item>
+        <item>Azul e Verde</item>
+        <item>Verde</item>
+        <item>Verde e Roxa</item>
+        <item>Roxa</item>
+        <item>Roxa e Marrom</item>
+        <item>Marrom</item>
+        <item>Marrom e Vermelha</item>
+        <item>Vermelha</item>
+        <item>Vermelha e Branca</item>
+        <item>Branca</item>
+    </string-array>
 </resources>
