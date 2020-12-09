@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Raízes Capoeira</string>
+
+    <!-- Form -->
     <string name="raizeiro">raizeiro</string>
     <string name="nickname">apelido</string>
     <string name="name">nome</string>
