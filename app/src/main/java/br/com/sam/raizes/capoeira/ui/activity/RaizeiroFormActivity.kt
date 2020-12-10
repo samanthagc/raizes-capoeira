@@ -2,7 +2,6 @@ package br.com.sam.raizes.capoeira.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -41,7 +40,6 @@ class RaizeiroFormActivity : AppCompatActivity() {
 
     private fun inicializeVariables() {
         this.graduations = resources.getStringArray(R.array.graduations)
-        Log.e("DANIELLE", " ------- " +graduations[0] + " --- " + graduations)
     }
 
     private fun spinnerConfig() {
