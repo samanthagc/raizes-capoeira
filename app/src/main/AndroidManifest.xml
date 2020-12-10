@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:fullBackupContent="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.RaizeiroFormActivity">
+        <activity android:name=".ui.activity.RaizeiroFormActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

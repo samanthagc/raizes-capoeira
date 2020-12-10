@@ -1,6 +1,8 @@
 package br.com.sam.raizes.capoeira.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import br.com.sam.raizes.capoeira.asynctask.BaseAsyncTask
 import br.com.sam.raizes.capoeira.database.dao.RaizeiroDAO
 import br.com.sam.raizes.capoeira.model.Raizeiro
 
@@ -16,16 +18,39 @@ class RaizeiroRepository(
         return dao.getAll()
     }
 
-    fun save(raizeiro: Raizeiro) {
-        return dao.save(raizeiro)
+    fun save(raizeiro: Raizeiro): LiveData<Void?> {
+        val liveData = MutableLiveData<Void?>()
+        saveLocal(raizeiro, whenSucess = {
+            liveData.value = null
+        })
+        return liveData
     }
 
-    fun save(raizeiros: List<Raizeiro>) {
-        return dao.save(raizeiros)
+    private fun saveLocal(
+        raizeiro: Raizeiro,
+        whenSucess: () -> Unit
+    ) {
+        BaseAsyncTask(whenPerforms = {
+            dao.save(raizeiro)
+        }, whenEnds = {
+            whenSucess()
+        }).execute()
     }
 
-    fun remove(raizeiro: Raizeiro) {
-        dao.remove(raizeiro)
+    private fun saveLocal(raizeiros: List<Raizeiro>, whenSucess: () -> Unit) {
+        BaseAsyncTask(whenPerforms = {
+            dao.save(raizeiros)
+        }, whenEnds = {
+            whenSucess()
+        }).execute()
+    }
+
+    private fun removeLocal(raizeiro: Raizeiro, whenSucess: () -> Unit) {
+        BaseAsyncTask(whenPerforms = {
+            dao.remove(raizeiro)
+        }, whenEnds = {
+            whenSucess()
+        }).execute()
     }
 
 }

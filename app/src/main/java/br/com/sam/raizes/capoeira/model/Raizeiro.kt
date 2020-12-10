@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class Raizeiro(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val nickname: String = "",
-    val name: String = "",
+    val nickname: String,
+    val name: String,
     val graduation: String = "Iniciante"
 )
