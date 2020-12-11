@@ -7,5 +7,9 @@
     <string name="name">nome</string>
     <string name="graduation">graduação</string>
     <string name="save">Salvar</string>
+    <string name="hyphen">-</string>
+    <string name="bt_raizeiro_detail_accessibility">Ver detalhes</string>
+    <string name="cb_present_accessibility">Está presente</string>
+    <string name="arrow_details_button"><![CDATA[>]]></string>
 
 </resources>
