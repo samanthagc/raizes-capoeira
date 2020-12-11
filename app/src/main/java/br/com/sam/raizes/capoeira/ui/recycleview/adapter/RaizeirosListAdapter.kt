@@ -32,6 +32,13 @@ class RaizeirosListAdapter(
         holder.attach(raizeiro)
     }
 
+    fun update(raizeiros: List<Raizeiro>) {
+        notifyItemRangeRemoved(0, this.raizeiros.size)
+        this.raizeiros.clear()
+        this.raizeiros.addAll(raizeiros)
+        notifyItemRangeInserted(0, this.raizeiros.size)
+    }
+
     inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 

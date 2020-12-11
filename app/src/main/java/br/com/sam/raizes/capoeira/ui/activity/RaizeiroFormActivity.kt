@@ -19,6 +19,8 @@ import br.com.sam.raizes.capoeira.ui.viewmodel.RaizeiroFormViewModel
 import br.com.sam.raizes.capoeira.ui.viewmodel.factory.RaizeiroFormViewModelFactory
 import kotlinx.android.synthetic.main.activity_raizeiro_form.*
 
+private const val APPBAR_TITLE = "cadastro"
+
 class RaizeiroFormActivity : AppCompatActivity() {
 
     private val viewModel by lazy {
@@ -34,8 +36,13 @@ class RaizeiroFormActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_raizeiro_form)
+        appbarConfig()
         inicializeVariables()
         spinnerConfig()
+    }
+
+    private fun appbarConfig() {
+        title = APPBAR_TITLE
     }
 
     private fun inicializeVariables() {
@@ -78,11 +85,7 @@ class RaizeiroFormActivity : AppCompatActivity() {
 
     private fun save(raizeiro: Raizeiro) {
         viewModel.save(raizeiro).observe(this, Observer {
-            Toast.makeText(
-                this,
-                raizeiro.name + " - " + raizeiro.nickname + " - " + raizeiro.graduation,
-                Toast.LENGTH_LONG
-            ).show()
+            finish()
         })
     }
 }
