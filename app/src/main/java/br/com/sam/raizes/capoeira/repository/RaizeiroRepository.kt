@@ -1,6 +1,7 @@
 package br.com.sam.raizes.capoeira.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.sam.raizes.capoeira.asynctask.BaseAsyncTask
 import br.com.sam.raizes.capoeira.database.dao.RaizeiroDAO
@@ -10,20 +11,37 @@ class RaizeiroRepository(
     private val dao: RaizeiroDAO
 ) {
 
+    private val mediator = MediatorLiveData<Resource<List<Raizeiro>?>>()
+
+    fun getAll(): LiveData<Resource<List<Raizeiro>?>> {
+        mediator.addSource(getAllLocal()) { raizeirosFound ->
+            mediator.value = Resource(data = raizeirosFound)
+        }
+        return mediator
+    }
+
+    fun save(raizeiro: Raizeiro): LiveData<Resource<Void?>> {
+        val liveData = MutableLiveData<Resource<Void?>>()
+        saveLocal(raizeiro, whenSucess = {
+            liveData.value = Resource(null)
+        })
+        return liveData
+    }
+
+    fun remove(raizeiro: Raizeiro): LiveData<Resource<Void?>> {
+        val liveData = MutableLiveData<Resource<Void?>>()
+        removeLocal(raizeiro, whenSucess = {
+            liveData.value = Resource(null)
+        })
+        return liveData
+    }
+
     fun getById(raizeiroId: Long): LiveData<Raizeiro?> {
         return dao.getById(raizeiroId)
     }
 
-    fun getAll(): LiveData<List<Raizeiro>> {
+    private fun getAllLocal(): LiveData<List<Raizeiro>> {
         return dao.getAll()
-    }
-
-    fun save(raizeiro: Raizeiro): LiveData<Void?> {
-        val liveData = MutableLiveData<Void?>()
-        saveLocal(raizeiro, whenSucess = {
-            liveData.value = null
-        })
-        return liveData
     }
 
     private fun saveLocal(
